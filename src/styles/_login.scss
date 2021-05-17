@@ -1,0 +1,34 @@
+.center-box {
+  position: relative;
+  width: 100vw;
+  height: 90vh;
+  overflow: auto;
+  .error {
+    color: red;
+  }
+  .form {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    .card {
+      padding: 1rem;
+      border-radius: 10px;
+      min-width: 450px;
+      form {
+        margin-top: 2rem;
+        .p-field {
+          margin-bottom: 1.5rem;
+        }
+      }
+      @media screen and (max-width: 960px) {
+        width: 80vw;
+        min-width: 0;
+      }
+      @media screen and (max-width: 640px) {
+        width: 80vw;
+        min-width: 0;
+      }
+    }
+  }
+}
