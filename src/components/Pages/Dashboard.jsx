@@ -1,36 +1,21 @@
-import React, {useState, useEffect} from 'react';
-
-const axios = require('axios');
-axios.defaults.withCredentials = true;
-
-const host = 'http://localhost:5000';
-const version = 'v1';
-const url = `${host}/api/${version}/auth/me`;
+import React, {useEffect} from 'react';
+import {loadUser} from '../../redux/actions/authAction';
+import {useDispatch, useSelector} from 'react-redux';
 
 function Dashboard() {
-  const [UserData, setUserData] = useState({userData: 'null'});
-  const [IsLoading, setIsLoading] = useState(false);
-  const [Authorised, setAuthorised] = useState(true);
+  const dispatch = useDispatch();
+  const UserData = useSelector(state => state.auth.user);
+  const isLoading = useSelector(state => state.auth.isLoading);
+  const isAuthorised = useSelector(state => state.auth.isAuthenticated);
+
   useEffect(() => {
-    setIsLoading(true);
-    axios
-      .get(url, {withCredentials: true})
-      .then(function (response) {
-        setUserData(response.data);
-        setIsLoading(false);
-      })
-      .catch(function (error) {
-        if (error.response.status === 401) {
-          setIsLoading(false);
-          setAuthorised(false);
-        }
-      });
-  }, []);
+    dispatch(loadUser());
+  }, [dispatch]);
   return (
     <div>
-      {Authorised ? (
+      {isAuthorised ? (
         <pre>
-          {IsLoading ? 'Loading.....' : JSON.stringify(UserData, null, 2)}
+          {isLoading ? 'Loading.....' : JSON.stringify(UserData, null, 2)}
         </pre>
       ) : (
         <h1>401</h1>

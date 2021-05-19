@@ -15,7 +15,7 @@ import 'primeicons/primeicons.css';
 
 function App() {
   return (
-    <div className='App'>
+    <div>
       <NavBar />
       <Switch>
         <Route path='/' exact>

@@ -5,17 +5,16 @@ import {InputText} from 'primereact/inputtext';
 import {Button} from 'primereact/button';
 import {Password} from 'primereact/password';
 
-import {useState} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+
+import {userLogin} from '../../redux/actions/authAction';
 
 const axios = require('axios');
 axios.defaults.withCredentials = true;
 
-const host = 'http://localhost:5000';
-const version = 'v1';
-const url = `${host}/api/${version}/auth/login`;
-
 function LoginSection() {
-  const [status, setStatus] = useState(false);
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -39,17 +38,7 @@ function LoginSection() {
       return errors;
     },
     onSubmit: data => {
-      axios
-        .post(url, data, {withCredentials: true})
-        .then(function (response) {
-          console.log('see the cookie section');
-          // const loginData = useContext(UserContext)
-        })
-        .catch(function (error) {
-          if (error.response.status === 401) {
-            setStatus(true);
-          }
-        });
+      dispatch(userLogin(data));
     },
   });
 
@@ -68,10 +57,10 @@ function LoginSection() {
       <div className='form p-d-flex p-jc-center'>
         <div className='card p-shadow-4'>
           <h1 className='p-text-center'>Login</h1>
-          {status ? (
-            <h4 className='error p-text-center'>Invalid credentials</h4>
-          ) : (
+          {isAuthenticated ? (
             ''
+          ) : (
+            <h4 className='error p-text-center'>Invalid credentials</h4>
           )}
           <form onSubmit={formik.handleSubmit} className='p-fluid'>
             <div className='p-field'>

@@ -9,6 +9,10 @@ body {
   height: 100vh;
 }
 
+a {
+  text-decoration: none;
+}
+
 @import './_variables.scss';
 @import './_Utils.scss';
 @import './_NavBar.scss';
