@@ -1,7 +1,7 @@
 import {GET_ERROR, CLEAR_ERROR} from '../actions/types';
 
 const initialState = {
-  msg: {},
+  msg: '',
   status: null,
   id: null,
 };
@@ -16,7 +16,7 @@ const errorReducer = (state = initialState, action) => {
       };
     case CLEAR_ERROR:
       return {
-        msg: {},
+        msg: '',
         status: null,
         id: null,
       };

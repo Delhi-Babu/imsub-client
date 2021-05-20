@@ -76,3 +76,18 @@
 .pi-bars {
   color: red;
 } */
+
+.notAuthenticated {
+  .p-menubar-root-list {
+    display: none;
+  }
+
+  a.p-menubar-button {
+    display: none !important;
+  }
+  &.p-menubar-mobile-active {
+    .p-menubar-button {
+      display: none;
+    }
+  }
+}

@@ -9,9 +9,11 @@ import {
   REGISTER_FAIL,
 } from '../actions/types';
 
+import {stringToBool} from '../../components/utils/stringToBool';
+
 const initState = {
   token: '',
-  isAuthenticated: true,
+  isAuthenticated: stringToBool(localStorage.getItem('isAuthenticated')),
   user: null,
   isLoading: false,
 };
@@ -24,14 +26,16 @@ const authReducer = (state = initState, action) => {
         isLoading: true,
       };
     case USER_LOADED:
+      localStorage.setItem('isAuthenticated', true);
       return {
         ...state,
-        isAuthenticated: true,
         isLoading: false,
         user: action.payload,
+        isAuthenticated: true,
       };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
+      localStorage.setItem('isAuthenticated', true);
       return {
         ...state,
         isAuthenticated: true,
@@ -42,12 +46,13 @@ const authReducer = (state = initState, action) => {
     case LOGIN_FAIL:
     case REGISTER_FAIL:
     case LOGOUT_SUCCESS:
+      localStorage.setItem('isAuthenticated', false);
       return {
         ...state,
         token: '',
-        isAuthenticated: false,
         isLoading: false,
         user: null,
+        isAuthenticated: false,
       };
     default:
       return state;

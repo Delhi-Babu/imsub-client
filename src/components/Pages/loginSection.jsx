@@ -15,6 +15,7 @@ axios.defaults.withCredentials = true;
 function LoginSection() {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+  const msg = useSelector(state => state.error.msg);
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -60,7 +61,7 @@ function LoginSection() {
           {isAuthenticated ? (
             ''
           ) : (
-            <h4 className='error p-text-center'>Invalid credentials</h4>
+            <h4 className='error p-text-center'>{msg}</h4>
           )}
           <form onSubmit={formik.handleSubmit} className='p-fluid'>
             <div className='p-field'>

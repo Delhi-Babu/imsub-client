@@ -8,7 +8,7 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  // LOGOUT_SUCCESS,
+  LOGOUT_SUCCESS,
   // REGISTER_SUCCESS,
   // REGISTER_FAIL,
 } from '../actions/types';
@@ -44,5 +44,19 @@ export const userLogin = formData => async dispatch => {
   } catch (error) {
     dispatch(returnErrors(error.response.data.error, error.response.status));
     dispatch({type: LOGIN_FAIL});
+  }
+};
+
+export const userLogout = () => async dispatch => {
+  dispatch({type: USER_LOADING});
+  try {
+    await axios.get(url('auth/logout'), {
+      withCredentials: true,
+    });
+    dispatch(clearErrors());
+    dispatch({type: LOGOUT_SUCCESS});
+  } catch (error) {
+    dispatch(returnErrors(error.response.data.error, error.response.status));
+    dispatch({type: AUTH_ERROR});
   }
 };
