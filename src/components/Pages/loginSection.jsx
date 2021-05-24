@@ -9,9 +9,6 @@ import {useSelector, useDispatch} from 'react-redux';
 
 import {userLogin} from '../../redux/actions/authAction';
 
-const axios = require('axios');
-axios.defaults.withCredentials = true;
-
 function LoginSection() {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
@@ -56,7 +53,7 @@ function LoginSection() {
   return (
     <div className='center-box'>
       <div className='form p-d-flex p-jc-center'>
-        <div className='card p-shadow-4'>
+        <div className='card p-shadow-5'>
           <h1 className='p-text-center'>Login</h1>
           {isAuthenticated ? (
             ''

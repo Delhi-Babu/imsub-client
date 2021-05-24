@@ -1,0 +1,34 @@
+/* @media print {
+  * {
+    visibility: hidden;
+    margin: 0;
+    padding: 0;
+  }
+  .invoice-content {
+    visibility: visible;
+  }
+} */
+
+@media print {
+  @page {
+    size: auto;
+    margin: 2rem;
+  }
+
+  * {
+    visibility: hidden;
+  }
+
+  .invoice-content * {
+    visibility: initial;
+  }
+  .invoice-content {
+    .invoice {
+      border: none;
+      padding: 0px;
+    }
+    position: absolute !important;
+    top: 0px !important;
+    left: 0px !important;
+  }
+}

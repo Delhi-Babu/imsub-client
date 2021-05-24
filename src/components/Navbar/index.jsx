@@ -1,35 +1,27 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, useHistory} from 'react-router-dom';
 
 import {FaFileInvoiceDollar} from 'react-icons/fa';
-import {VscNewFile} from 'react-icons/vsc';
 
 import {Menubar} from 'primereact/menubar';
 import {useSelector} from 'react-redux';
 
 const NavBar = () => {
+  let history = useHistory();
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   const items = [
     {
       icon: 'pi pi-fw pi-file',
-      template: () => {
-        return (
-          <NavLink to='/dashboard' className='p-menuitem-link'>
-            <span className='p-menuitem-icon pi pi-fw pi-file'></span>
-            <span className='p-menuitem-text'>Invoice List</span>
-          </NavLink>
-        );
+      label: 'Invoices',
+      command: () => {
+        history.push('/getInvoices');
       },
     },
     {
       icon: 'pi pi-fw pi-file',
-      template: () => {
-        return (
-          <NavLink to='/dashboard' className='p-menuitem-link'>
-            <VscNewFile className='p-menuitem-icon pi' />
-            <span className='p-menuitem-text'>Create Invoice</span>
-          </NavLink>
-        );
+      label: 'Create invoice',
+      command: () => {
+        history.push('/dashboard');
       },
     },
   ];
@@ -71,7 +63,8 @@ const NavBar = () => {
               to='/signup'
               className='p-menuitem-link'
               activeClassName='active'>
-              SignUp
+              <span className='p-menuitem-icon pi pi-fw pi-user-plus'></span>
+              <span className='p-menuitem-text'>Login</span>
             </NavLink>
           </li>
         </ul>

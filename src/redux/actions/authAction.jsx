@@ -9,8 +9,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
-  // REGISTER_SUCCESS,
-  // REGISTER_FAIL,
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
 } from '../actions/types';
 
 export const loadUser = () => async dispatch => {
@@ -44,6 +44,23 @@ export const userLogin = formData => async dispatch => {
   } catch (error) {
     dispatch(returnErrors(error.response.data.error, error.response.status));
     dispatch({type: LOGIN_FAIL});
+  }
+};
+
+export const userRegister = formData => async dispatch => {
+  dispatch({type: USER_LOADING});
+  try {
+    const res = await axios.post(url('auth/register'), formData, {
+      withCredentials: true,
+    });
+    dispatch(clearErrors());
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: res.data.token,
+    });
+  } catch (error) {
+    dispatch(returnErrors(error.response.data.error, error.response.status));
+    dispatch({type: REGISTER_FAIL});
   }
 };
 

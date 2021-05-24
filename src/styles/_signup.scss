@@ -1,0 +1,14 @@
+.signUp {
+  overflow: visible;
+  height: 100%;
+  .form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    .card {
+      margin-bottom: 3rem;
+      margin-top: 3rem;
+    }
+  }
+}

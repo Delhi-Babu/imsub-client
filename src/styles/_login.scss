@@ -1,8 +1,8 @@
 .center-box {
-	font-family: $font;
+  font-family: $font;
   position: relative;
-  width: 100vw;
-  height: 90vh;
+  width: 100%;
+  height: 91vh;
   overflow: auto;
   .error {
     color: red;
@@ -13,6 +13,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
     .card {
+      background-color: #fff;
       padding: 1rem;
       border-radius: 10px;
       min-width: 450px;

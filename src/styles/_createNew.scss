@@ -1,0 +1,15 @@
+.create-invoice {
+  display: flex;
+  .create {
+    width: 50%;
+    .p-field {
+      margin-top: 2rem;
+    }
+    .p-tabview-panels {
+      height: 110vh;
+    }
+  }
+  .preview {
+    width: 50%;
+  }
+}

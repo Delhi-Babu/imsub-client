@@ -1,0 +1,109 @@
+/* .card {
+  background: #ffffff;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0 10px 40px red;
+  -moz-border-radius: 24px;
+  -webkit-border-radius: 24px;
+  border-radius: 24px;
+  margin-bottom: 2rem;
+} */
+
+.box {
+  background-color: #e5e6e8;
+  .invoice {
+    border-radius: 15px;
+    background-color: #fff;
+    padding: 2rem;
+    .invoice-header {
+      border-bottom: 2px solid #ddd;
+      .invoice-header-left {
+        div {
+          font-size: 1.2rem;
+          font-weight: 200;
+          margin-bottom: 0.5rem;
+        }
+      }
+
+      .invoice-header-right {
+        .title {
+          font-size: 2rem;
+          padding-bottom: 1rem;
+        }
+        .invoice-details {
+          display: flex;
+          flex-wrap: wrap;
+          width: 15rem;
+          & > div {
+            width: 50%;
+            margin-bottom: 0.5rem;
+          }
+          .invoice-label {
+            &:nth-child(odd) {
+              text-align: left;
+            }
+            &:nth-child(even) {
+              text-align: right;
+            }
+          }
+        }
+      }
+    }
+    .invoice-to {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      .bill-to {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      .invoice-to-right {
+        .title {
+          font-size: 1.7rem;
+          padding-bottom: 1rem;
+        }
+        .customer-details {
+          display: flex;
+          flex-wrap: wrap;
+          width: 15rem;
+          & > div {
+            width: 50%;
+            margin-bottom: 0.5rem;
+          }
+          .customer-label {
+            &:nth-child(odd) {
+              text-align: left;
+            }
+            &:nth-child(even) {
+              text-align: right;
+            }
+          }
+        }
+      }
+    }
+    .invoice-summary {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      .summary-details {
+        display: flex;
+        flex-wrap: wrap;
+        width: 15rem;
+        & > div {
+          width: 50%;
+          margin-bottom: 0.5rem;
+        }
+        .summary-label {
+          &:nth-child(odd) {
+            text-align: left;
+          }
+          &:nth-child(even) {
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+}
