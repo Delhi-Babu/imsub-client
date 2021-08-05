@@ -10,6 +10,9 @@ import {classNames} from 'primereact/utils';
 import {DataTable} from 'primereact/datatable';
 import {Column} from 'primereact/column';
 
+import {useSelector, useDispatch} from 'react-redux';
+import {uploadInvocie} from '../../redux/actions/invoceuploadaction';
+
 function CreateInvoice() {
   // ((emptyProduct.price * emptyProduct.quantity) / emptyProduct.gst) * 100,
   let emptyProduct = {
@@ -29,6 +32,9 @@ function CreateInvoice() {
 
   const [products, setProducts] = useState([]);
   const dt = useRef(null);
+
+  const dispatch = useDispatch();
+  const data = useSelector(state => state.sync.data);
 
   const saveProduct = () => {
     setSubmitted(true);
@@ -57,6 +63,7 @@ function CreateInvoice() {
   };
 
   const deleteSelectedProducts = () => {
+    console.log('clicked delete');
     let _products = products.filter(val => !selectedProducts.includes(val));
     setProducts(_products);
     setDeleteProductsDialog(false);
@@ -69,6 +76,7 @@ function CreateInvoice() {
     setProductDialog(true);
   };
   const confirmDeleteSelected = () => {
+    console.log('called delete');
     setDeleteProductsDialog(true);
   };
   const hideDialog = () => {
@@ -152,6 +160,10 @@ function CreateInvoice() {
     }
 
     return index;
+  };
+
+  const uploadToCloud = () => {
+    dispatch(uploadInvocie(data));
   };
   return (
     <div className='create-invoice'>
@@ -237,6 +249,12 @@ function CreateInvoice() {
                 disabled={!selectedProducts || !selectedProducts.length}
               />
 
+              <Button
+                label='Save'
+                icon='pi pi-save'
+                className='p-button-info p-ml-2'
+                onClick={uploadToCloud}
+              />
               <Dialog
                 visible={productDialog}
                 style={{width: '450px'}}
@@ -306,6 +324,25 @@ function CreateInvoice() {
                     locale='en-IN'
                     disabled
                   />
+                </div>
+              </Dialog>
+              <Dialog
+                visible={deleteProductsDialog}
+                style={{width: '450px'}}
+                header='Confirm'
+                modal
+                footer={deleteProductsDialogFooter}
+                onHide={hideDeleteProductsDialog}>
+                <div className='confirmation-content'>
+                  <i
+                    className='pi pi-exclamation-triangle p-mr-3'
+                    style={{fontSize: '2rem'}}
+                  />
+                  {product && (
+                    <span>
+                      Are you sure you want to delete the selected products?
+                    </span>
+                  )}
                 </div>
               </Dialog>
 

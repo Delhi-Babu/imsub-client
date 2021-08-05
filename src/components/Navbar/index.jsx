@@ -21,7 +21,7 @@ const NavBar = () => {
       icon: 'pi pi-fw pi-file',
       label: 'Create invoice',
       command: () => {
-        history.push('/dashboard');
+        history.push('/createNew');
       },
     },
   ];
@@ -64,7 +64,7 @@ const NavBar = () => {
               className='p-menuitem-link'
               activeClassName='active'>
               <span className='p-menuitem-icon pi pi-fw pi-user-plus'></span>
-              <span className='p-menuitem-text'>Login</span>
+              <span className='p-menuitem-text'>Signup</span>
             </NavLink>
           </li>
         </ul>
