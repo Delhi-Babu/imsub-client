@@ -1,0 +1,15 @@
+.invoiceList {
+  width: 90vw;
+  height: 80vh;
+  margin: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(5, 5vw);
+  grid-gap: 20px;
+  .invoiceItem {
+    width: '25rem';
+    marginbottom: '2em';
+    grid-column-start: 1;
+    grid-column-end: 1;
+  }
+}

@@ -1,5 +1,6 @@
 .create-invoice {
   display: flex;
+
   .create {
     width: 50%;
     .p-field {
@@ -11,5 +12,38 @@
   }
   .preview {
     width: 50%;
+  }
+
+  @media screen and (max-width: 960px) {
+    flex-direction: column;
+
+    .create {
+      width: 100vw;
+      .p-field {
+        margin-top: 2rem;
+      }
+      .p-tabview-panels {
+        height: 110vh;
+      }
+    }
+    .preview {
+      width: 100vw;
+    }
+  }
+  @media screen and (max-width: 640px) {
+    flex-direction: column;
+
+    .create {
+      width: 100vw;
+      .p-field {
+        margin-top: 2rem;
+      }
+      .p-tabview-panels {
+        height: 110vh;
+      }
+    }
+    .preview {
+      width: 100vw;
+    }
   }
 }

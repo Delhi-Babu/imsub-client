@@ -7,27 +7,14 @@ function InvoiceList(props) {
   const [count, setCount] = useState(1);
   useEffect(() => {
     //rerender when invoices changes
+    console.log('changed');
     setInvoices(props.invoices);
     console.log(invoices);
     setCount(count + 1);
   }, [props.invoices]);
 
-  // <div>
-  //   <Invoicecards
-  //     key={invoiceItem._id}
-  //     name={invoiceItem.customerName}
-  //     phone={invoiceItem.phone}
-  //     totalAmount={invoiceItem.totalAmout}
-  //     status={invoiceItem.paymentStatus}
-  //   />
-  // </div>
-
-  // <h1>
-  //   HI
-  //   {console.log(invoiceItem)}
-  // </h1>
   return (
-    <div>
+    <div className='p-grid p-justify-even' style={{margin: '1rem'}}>
       {console.log(invoices)}
       {invoices.map(invoiceItem => (
         <Invoicecards

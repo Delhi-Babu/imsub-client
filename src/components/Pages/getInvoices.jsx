@@ -11,21 +11,25 @@ function GetInvoices() {
   const mounted = useRef();
 
   useEffect(() => {
-    // if (!mounted.current) {
     dispatch(loadInvoices()).then(console.log('something'));
-    // mounted.current = true;
-    // } else {
-    // }
   }, []);
   useEffect(() => {
-    setdata(invoices);
+    if (!mounted) {
+      mounted.current = true;
+    } else {
+      setdata(invoices);
+    }
   }, [invoices]);
 
   // <pre>{JSON.stringify(invoices, null, 2)}</pre>
   // {isLoading ? <div>Loading....</div> : <InvoiceList invoices={data} />}
   return (
     <div>
-      {isLoading ? <div>Loading....</div> : <InvoiceList invoices={data} />}
+      {isLoading ? (
+        <div>Loading....</div>
+      ) : (
+        <InvoiceList  invoices={data} />
+      )}
     </div>
   );
 }

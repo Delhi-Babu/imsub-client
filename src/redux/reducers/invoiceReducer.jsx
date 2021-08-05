@@ -1,6 +1,6 @@
 import {INVOICE_LOADING, INVOICE_LOADED, AUTH_ERROR} from '../actions/types';
 const initState = {
-  invoices: {},
+  invoices: [],
   isLoading: false,
   count: 0,
 };

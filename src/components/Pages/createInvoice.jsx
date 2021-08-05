@@ -35,6 +35,7 @@ function CreateInvoice() {
 
   const dispatch = useDispatch();
   const data = useSelector(state => state.sync.data);
+  const [paid, setPaid] = useState(false);
 
   const saveProduct = () => {
     setSubmitted(true);
@@ -163,6 +164,8 @@ function CreateInvoice() {
   };
 
   const uploadToCloud = () => {
+    // data.payment
+    data.paymentStatus = paid;
     dispatch(uploadInvocie(data));
   };
   return (
@@ -254,6 +257,15 @@ function CreateInvoice() {
                 icon='pi pi-save'
                 className='p-button-info p-ml-2'
                 onClick={uploadToCloud}
+              />
+
+              <Button
+                label={!paid ? 'Payment Done' : 'Pay Later'}
+                icon='pi pi-money-bill'
+                className='p-button-help p-ml-2'
+                onClick={() => {
+                  setPaid(!paid);
+                }}
               />
               <Dialog
                 visible={productDialog}
