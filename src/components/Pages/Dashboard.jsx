@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {loadUser} from '../../redux/actions/authAction';
 import {useDispatch, useSelector} from 'react-redux';
+import DashboardContents from './DashboardContents';
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -14,9 +15,10 @@ function Dashboard() {
   return (
     <div>
       {isAuthorised ? (
-        <pre>
-          {isLoading ? 'Loading.....' : JSON.stringify(UserData, null, 2)}
-        </pre>
+        <div>
+          {isLoading ? 'Loading.....' : <DashboardContents data={UserData} />}
+          {console.log(UserData)}
+        </div>
       ) : (
         <h1>401</h1>
       )}
