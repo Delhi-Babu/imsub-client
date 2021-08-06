@@ -1,13 +1,14 @@
 import {
   INVOICE_FAILED,
   INVOICE_SUCCESS,
-  INVOICE_UPLOAD,
   SAVE_INVOICE,
+  CLEAR_SAVE,
 } from '../actions/types';
 
 const initState = {
   sent: false,
   data: {},
+  isSent: false,
 };
 
 const invoiceUploadReduer = (state = initState, action) => {
@@ -26,6 +27,11 @@ const invoiceUploadReduer = (state = initState, action) => {
       return {
         ...state,
         sent: false,
+      };
+    case CLEAR_SAVE:
+      return {
+        ...state,
+        isSent: false,
       };
     default:
       return state;

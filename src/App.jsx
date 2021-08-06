@@ -20,6 +20,7 @@ import GetInvoices from './components/Pages/getInvoices';
 
 function App() {
   const isAuthenticated = useSelector(store => store.auth.isAuthenticated);
+  const isSent = useSelector(store => store.sync.sent);
   return (
     <div>
       <NavBar />

@@ -1,4 +1,5 @@
 import React, {useState, useRef} from 'react';
+import { useHistory } from "react-router-dom";
 import Invoices from './subComponents/invoices.jsx';
 import {TabView, TabPanel} from 'primereact/tabview';
 import {useFormik} from 'formik';
@@ -13,7 +14,7 @@ import {Column} from 'primereact/column';
 import {useSelector, useDispatch} from 'react-redux';
 import {uploadInvocie} from '../../redux/actions/invoceuploadaction';
 
-function CreateInvoice() {
+function CreateInvoice(props) {
   // ((emptyProduct.price * emptyProduct.quantity) / emptyProduct.gst) * 100,
   let emptyProduct = {
     id: null,
@@ -37,6 +38,7 @@ function CreateInvoice() {
   const data = useSelector(state => state.sync.data);
   const [paid, setPaid] = useState(false);
 
+  let history = useHistory();
   const saveProduct = () => {
     setSubmitted(true);
 
@@ -167,6 +169,7 @@ function CreateInvoice() {
     // data.payment
     data.paymentStatus = paid;
     dispatch(uploadInvocie(data));
+	  history.push('/getInvoices')
   };
   return (
     <div className='create-invoice'>
