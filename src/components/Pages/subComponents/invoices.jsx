@@ -36,6 +36,7 @@ function Invoices({cName, cAddress1, cAddress2, cGst, cPhone, items}) {
       return accumulator + item.rate;
     }, 0);
     setStubtotal(totalPrice);
+    setProducts(items);
     const data = {
       id: id,
       customerName: cName,
